@@ -35,11 +35,8 @@ public class BoatBlockListener implements Listener{
 			
 			if (checkForWater(block.getLocation()) == true || checkForWater(under) == true){
 				event.setCancelled(true);
-				for(World world : this.plugin.getServer().getWorlds()) {
-					if(world.getBlockAt(block.getLocation()) == block){	
-						world.spawn(spawnBoat, Boat.class); break;
-					}
-				}
+				World w = spawnBoat.getWorld();
+				w.spawn(spawnBoat, Boat.class);
 			}				
 		
 		}
