@@ -7,13 +7,14 @@ import org.bukkit.World;
 import org.bukkit.block.Block;
 import org.bukkit.block.BlockFace;
 
-import org.bukkit.craftbukkit.entity.CraftBoat;
+import org.bukkit.entity.Boat;
 
+import org.bukkit.event.EventHandler;
+import org.bukkit.event.Listener;
 import org.bukkit.event.block.BlockDispenseEvent;
-import org.bukkit.event.block.BlockListener;
 import org.bukkit.inventory.ItemStack;
 
-public class BoatBlockListener extends BlockListener{
+public class BoatBlockListener implements Listener{
 
 	public final BoatLaunch plugin;
 	
@@ -23,7 +24,7 @@ public class BoatBlockListener extends BlockListener{
 	Logger log = Logger.getLogger("Minecraft");
 	Location spawnBoat;
  
-
+	@EventHandler
 	public void onBlockDispense(BlockDispenseEvent event){
 		ItemStack dispenseItem = event.getItem();
 		
@@ -35,7 +36,8 @@ public class BoatBlockListener extends BlockListener{
 			if (checkForWater(block.getLocation()) == true || checkForWater(under) == true){
 				event.setCancelled(true);
 				for(World world : this.plugin.getServer().getWorlds()) {
-					if(world.getBlockAt(block.getLocation()) == block){							world.spawn(spawnBoat, CraftBoat.class); break;
+					if(world.getBlockAt(block.getLocation()) == block){	
+						world.spawn(spawnBoat, Boat.class); break;
 					}
 				}
 			}				

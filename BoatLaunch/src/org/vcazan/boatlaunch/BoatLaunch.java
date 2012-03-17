@@ -1,7 +1,6 @@
 package org.vcazan.boatlaunch;
 
 import java.util.logging.Logger;
-import org.bukkit.event.Event;
 import org.bukkit.plugin.PluginManager;
 import org.bukkit.plugin.java.JavaPlugin;
 
@@ -13,17 +12,17 @@ public class BoatLaunch extends JavaPlugin {
 	
 	public void main(){
 		PluginManager pm = this.getServer().getPluginManager();
-	    pm.registerEvent(Event.Type.BLOCK_DISPENSE, blockListener, Event.Priority.Normal, this);
+		pm.registerEvents(blockListener, this);
 	}
     
 	public void onEnable(){
-		log.info("BoatLaunch v0.2 has loaded.");
+		log.info("BoatLaunch v0.3 has loaded.");
 		main();
 
 	}
 	
 	public void onDisable(){
-		log.info("BoatLaunch v0.2 has unloaded.");
+		log.info("BoatLaunch v0.3 has unloaded.");
 	}
 	
 }
